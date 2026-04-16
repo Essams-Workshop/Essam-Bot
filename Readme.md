@@ -35,20 +35,17 @@ This project is being developed collaboratively as part of Builder Cohort #1.
 ## Tech Stack
 
 ### Backend
-- Node.js
 - TypeScript
-- Fastify (API server)
 - discord.js (Discord bot)
+- TBD
 
 ### Database
-- PostgreSQL
-- Prisma ORM
+- TBD
 
 ### Frontend
 - Next.js
 - TypeScript
 - Tailwind CSS
-- TanStack Query
 
 ### Tooling
 - Turborepo (monorepo)
