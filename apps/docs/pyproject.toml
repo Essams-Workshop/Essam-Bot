@@ -1,0 +1,7 @@
+[project]
+name = "opedia"
+version = "1.0.0"
+description = "Opedia: Private knowledge base (PKB) for Sys Admins, Linux, and DevOps."
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = ["zensical>=0.0.21"]
