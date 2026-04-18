@@ -1,14 +1,18 @@
 {
-  "name": "@essam/types",
+  "name": "@essam-bot/types",
   "version": "1.0.0",
   "private": true,
-  "main": "./types.ts",
-  "types": "./types.ts",
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch"
   },
   "devDependencies": {
     "typescript": "^6.0.2"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
   }
 }

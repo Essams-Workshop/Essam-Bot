@@ -1,25 +1,22 @@
 {
-  "name": "bot",
+  "name": "@essam-bot/bot",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "type": "module",
+  "description": "Official Discord bot logic for Essam Bot, part of EOSC.",
+  "main": "dist/index.js",
   "scripts": {
-    "dev": "tsx src/index.ts",
     "build": "tsc",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.29.3",
   "dependencies": {
-    "discord.js": "^14.26.3",
-    "dotenv": "^17.4.2"
+    "@essam-bot/types": "workspace:*",
+    "@essam-bot/db": "workspace:*",
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.4.5"
   },
   "devDependencies": {
-    "@types/node": "^25.6.0",
-    "tsx": "^4.21.0",
-    "typescript": "^6.0.2"
+    "@types/node": "^20.11.20",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "@essam/db",
+  "name": "@essam-bot/db",
   "version": "1.0.0",
   "private": true,
   "main": "./index.ts",
