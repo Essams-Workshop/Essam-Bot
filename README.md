@@ -6,7 +6,7 @@
 [![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-4169E1?style=flat&logo=postgresql&logoColor=white)]()
 [![Redis](https://img.shields.io/badge/-Redis-DC382D?style=flat&logo=redis&logoColor=white)]()
 [![Pulumi](https://img.shields.io/badge/-Pulumi-8A3391?style=flat&logo=pulumi&logoColor=white)]()
-[![MkDocs](https://img.shields.io/badge/-MkDocs%20(Zensical)-000000?style=flat&logo=markdown&logoColor=white)]()
+[![MkDocs](<https://img.shields.io/badge/-MkDocs%20(Zensical)-000000?style=flat&logo=markdown&logoColor=white>)]()
 
 ![Essam Bot Demo](./.github/demo/working-cat.gif)
 
@@ -22,27 +22,27 @@
 # Builder Cohort #1 — Coding Activity Tracker
 
 > [!WARNING]
-> This project is currently in **active development** as part of Builder Cohort #1. 
-> It is undergoing continuous iteration and is not yet ready for a final release. 
+> This project is currently in **active development** as part of Builder Cohort #1.
+> It is undergoing continuous iteration and is not yet ready for a final release.
 > We are actively building, testing, and working on the project
 >
-> This project serves as a collaborative environment to simulate a real dev team 
-> workflow, helping contributors gain practical experience while building a 
+> This project serves as a collaborative environment to simulate a real dev team
+> workflow, helping contributors gain practical experience while building a
 > real-world Discord bot and web system.
 >
-> **Vision**: To create a space where developers gain real experience by 
+> **Vision**: To create a space where developers gain real experience by
 > working on collaborative, open-source projects. This is the first cohort.
 
 > Track real coding activity, not just chat. Build, rank, and grow together.
 
-Builder Cohort #1 is a community-built system designed to track real coding 
-activity and reflect it through a ranking system inside a Discord server. 
+Builder Cohort #1 is a community-built system designed to track real coding
+activity and reflect it through a ranking system inside a Discord server.
 Instead of rewarding chat activity, this focuses on actual building. Users
 gain ranks based on coding contributions, which can be viewed both in Discord
 and through a dedicated web dashboard.
 
 This project is being developed collaboratively, using a modern monorepo approach
-to house our bot, api's, site, and more. 
+to house our bot, api's, site, and more.
 
 - **Frontend:** Tanstack Query, Tanstack Router, React
 - **Backend:** NestJS
@@ -68,16 +68,16 @@ to house our bot, api's, site, and more.
 
 Here are the core features and architectural decisions for the Coding Activity Tracker:
 
-1. **Coding Activity Tracking**: Tracks user contributions (commits, activity, 
+1. **Coding Activity Tracking**: Tracks user contributions (commits, activity,
    or manual logs) and stores progress over time.
-2. **Dynamic Ranking System**: Implements a clear progression system where 
+2. **Dynamic Ranking System**: Implements a clear progression system where
    users earn dynamic ranks based on actual development activity.
 3. **Discord Bot (Discord.js)**: Allows users to view personal stats, check
    the leaderboard, and monitor their rank and progress directly within the server.
-4. **Web Dashboard (Next.js & Tailwind CSS)**: A frontend interface to view 
+4. **Web Dashboard (Next.js & Tailwind CSS)**: A frontend interface to view
    detailed stats, global leaderboards, and extended user profiles.
-5. **Monorepo Structure (Turborepo)**: Organized into distinct applications 
-   (`apps/bot`, `apps/api`, `apps/web`) and shared packages 
+5. **Monorepo Structure (Turborepo)**: Organized into distinct applications
+   (`apps/bot`, `apps/api`, `apps/web`) and shared packages
    (`packages/db`, `packages/types`).
 
 ## Installation
@@ -90,7 +90,7 @@ Here are the core features and architectural decisions for the Coding Activity T
 
 ## Contributing
 
-Contributors are welcome for Essam Bot. Read [CONTRIBUTING.md](/.github/CONTRIBUTING.md) 
+Contributors are welcome for Essam Bot. Read [CONTRIBUTING.md](/.github/CONTRIBUTING.md)
 for guidelines and best practices.
 
 With that being said, all the best, and to the moon 🚀!

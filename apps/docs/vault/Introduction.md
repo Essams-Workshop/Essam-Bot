@@ -1,7 +1,8 @@
 ---
 uuid: 5fee30ac-3909-4250-afbe-208a18b4c723
 ---
-This is your new *vault*. Something something something.
+
+This is your new _vault_. Something something something.
 
 Make a note of something, [[create a link]], or try [the Importer](https://help.obsidian.md/Plugins/Importer)!
 
