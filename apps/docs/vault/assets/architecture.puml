@@ -1,0 +1,33 @@
+@startuml
+skinparam maxMessageSize 200
+skinparam ParticipantPadding 20
+skinparam BoxPadding 10
+
+actor "Admin / User" as Browser
+actor "Discord User" as DUser
+
+node "Frontend Dashboard\n(React + Tanstack)" as FE
+node "NestJS API Server\n(BFF & Webhooks)" as API
+node "NestJS Worker Microservice\n(Heavy Lifting)" as Worker
+node "Discord Bot\n(Discord.js)" as Bot
+
+database "PostgreSQL\n(Persistent Data, Queues & Cache)" as DB
+
+cloud "GitHub API / Webhooks" as GitHub
+cloud "Discord API" as Discord
+
+Browser <--> FE : View Dashboard / Leaderboards
+FE <--> API : REST (Tanstack Query)
+
+GitHub --> API : Webhook Events (PRs, Commits)
+API --> DB : Enqueue Event Job (Table)
+DB <--> Worker : Dequeue & Process Job (SKIP LOCKED)
+
+Worker --> DB : Update User XP, Stats & Leaderboard
+Worker --> Bot : IPC / Event: Send PDF or Notification
+
+Bot <--> Discord : Commands & Messages
+DUser <--> Discord : Interact with Bot
+API <--> DB : Admin Queries / Dashboard Stats
+
+@enduml
