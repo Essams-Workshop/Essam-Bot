@@ -1,11 +1,31 @@
+# misc
 .DS_Store
+.cache
+
+# dependencies
 node_modules
+
+# turbo
 .turbo
+
+# logs
 *.log
+
+# build outputs
 dist
 dist-ssr
-*.local
-.env
-.cache
-server/dist
 public/dist
+
+# env
+.env*
+!.env.example
+envs/*.env
+!envs/*.example.env
+
+# cache
+.cache
+
+# editor / OS
+.DS_Store
+.vscode
+.idea
