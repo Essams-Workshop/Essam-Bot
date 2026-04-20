@@ -1,23 +1,17 @@
 {
-  "name": "essam-bot",
-  "version": "1.0.0",
   "private": true,
-  "description": "",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
-    "clean": "turbo run clean",
-    "typecheck": "turbo run typecheck"
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
-  "keywords": [],
-  "author": "",
-  "license": "UNLICENSED",
-  "packageManager": "pnpm@10.29.3",
   "devDependencies": {
+    "@types/eslint": "^9.6.1",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
     "turbo": "^2.9.6"
   },
-  "pnpm": {
-    "onlyBuiltDependencies": ["@biomejs/biome"]
-  }
+  "packageManager": "pnpm@8.15.6",
+  "name": "with-vite-react"
 }

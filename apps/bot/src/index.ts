@@ -1,12 +1,4 @@
-import { Client, Events, GatewayIntentBits } from "discord.js";
-import "dotenv/config";
+import { startClient } from "./core/client.ts";
+import "./types/discord";
 
-const client: Client<boolean> = new Client({
-  intents: [GatewayIntentBits.Guilds],
-});
-
-client.once(Events.ClientReady, (readyClient: Client<true>) => {
-  console.log(`Ready! Logged in as ${readyClient.user.tag}`);
-});
-
-client.login(process.env.DISCORD_BOT);
+startClient().catch(console.error);

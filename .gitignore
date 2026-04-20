@@ -1,23 +1,31 @@
-# dependencies
-node_modules/
-
-# build outputs
-dist/
-.next/
-out/
-
-# env files
-.env
-.env.local
-
-# logs
-logs
-*.log
-
-# OS files
+# misc
 .DS_Store
+.cache
 
-# turborepo
+# dependencies
+node_modules
+
+# turbo
 .turbo
 
-pnpm-lock.yaml
+# logs
+*.log
+
+# build outputs
+dist
+dist-ssr
+public/dist
+
+# env
+.env*
+!.env.example
+envs/*.env
+!envs/*.example.env
+
+# cache
+.cache
+
+# editor / OS
+.DS_Store
+.vscode
+.idea
