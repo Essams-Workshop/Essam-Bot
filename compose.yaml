@@ -1,0 +1,29 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 3s
+      timeout: 3s
+      retries: 5
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+      ESSAM_BOT_USER: ${ESSAM_BOT_USER:-essam-bot}
+      ESSAM_BOT_PASS: ${ESSAM_BOT_PASS:-essam-bot}
+      ESSAM_BOT_DB: ${ESSAM_BOT_DB:-essam-bot}
+      TZ: UTC
+      PGTZ: UTC
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./scripts/setup-dcrdb.sh:/docker-entrypoint-initdb.d/setup-dcrdb.sh:ro
+
+volumes:
+  postgres-data:
+    driver: local
