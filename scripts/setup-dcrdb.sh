@@ -19,15 +19,11 @@
 
 set -e
 
-ESSAM_BOT_USER="${ESSAM_BOT_USER:-essam-bot}"
-ESSAM_BOT_PASS="${ESSAM_BOT_PASS:-essam-bot}"
-ESSAM_BOT_DB=${ESSAM_BOT_DB:-essam-bot}
+ESSAM_BOT_USER="${ESSAM_BOT_USER:-essambot}"
+ESSAM_BOT_PASS="${ESSAM_BOT_PASS:-essambot}"
+ESSAM_BOT_DB=${ESSAM_BOT_DB:-essambot}
 
-# LANGFUSE_USER="${LANGFUSE_USER:-langfuse}"
-# LANGFUSE_PASS="${LANGFUSE_PASSWORD:-langfuse}"
-# LANGFUSE_DB="${LANGFUSE_DB:-langfuse}"
-
-POSTGRES_SUPERUSER="${POSTGRES_USER}"
+POSTGRES_SUPERUSER="${POSTGRES_USER:-postgres}"
 
 setup_dbu() {
   local db_name="$1"

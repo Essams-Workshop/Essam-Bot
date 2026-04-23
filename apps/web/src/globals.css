@@ -1,0 +1,442 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* ============================================================
+   FONT IMPORTS
+   
+   Typography stack:
+   - Display/Headings: DM Serif Display (editorial warmth, trust)
+   - UI/Body: DM Sans (same family, screen-optimised, readable)
+   - Monospace: JetBrains Mono (developer-adjacent credibility)
+   
+   Loaded from Google Fonts — replace with self-hosted if needed.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* Keep your existing custom fonts (VendSans, Oxygen) in case they are
+   referenced elsewhere in the project — no breaking changes. */
+@font-face {
+	font-family: "Oxygen-Regular";
+	src: url("/fonts/Oxygen-Regular.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Oxygen-Light";
+	src: url("/fonts/Oxygen-Light.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Oxygen-Bold";
+	src: url("/fonts/Oxygen-Bold.ttf") format("truetype");
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "VendSans-Light";
+	src: url("/fonts/VendSans-Light.ttf") format("truetype");
+	font-weight: 200;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "VendSans-Regular";
+	src: url("/fonts/VendSans-Regular.ttf") format("truetype");
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "VendSans-Medium";
+	src: url("/fonts/VendSans-Medium.ttf") format("truetype");
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "VendSans-Semibold";
+	src: url("/fonts/VendSans-Semibold.ttf") format("truetype");
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "VendSans-Bold";
+	src: url("/fonts/VendSans-Bold.ttf") format("truetype");
+	font-weight: bolder;
+	font-style: normal;
+	font-display: swap;
+}
+
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+
+@utility no-scrollbar {
+	@apply [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
+}
+
+@utility scrollbar-hidden {
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+/* Glassmorphism utility — apply to cards, panels, modals */
+@utility glass {
+	background: var(--glass-bg);
+	backdrop-filter: blur(var(--glass-blur));
+	-webkit-backdrop-filter: blur(var(--glass-blur));
+	border: 1px solid var(--glass-border);
+	box-shadow: var(--glass-shadow);
+}
+
+/* Elevated glass — for popovers and dropdowns sitting on top of glass */
+@utility glass-elevated {
+	background: var(--glass-bg-elevated);
+	backdrop-filter: blur(var(--glass-blur-elevated));
+	-webkit-backdrop-filter: blur(var(--glass-blur-elevated));
+	border: 1px solid var(--glass-border-elevated);
+	box-shadow: var(--glass-shadow-elevated);
+}
+
+
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================
+   
+   DESIGN PHILOSOPHY: Glassmorphism + Kanagawa Lotus
+   
+   Kanagawa Lotus is a light, painterly theme drawn from
+   Hokusai's famous woodblock print. Its palette is warm
+   parchment, dusty rose, muted teal, and soft indigo —
+   far more inviting for students than the original dark
+   Gruvebox. We soften these hues further toward "pastel
+   lotus" so the interface breathes without sacrificing
+   the rich, editorial character of the source palette.
+   
+   Glassmorphism layers:
+     - Background: a soft ambient gradient mesh (implemented
+       in body via CSS) so frosted-glass cards have something
+       to blur against.
+     - Cards / panels: semi-transparent with backdrop-filter
+       blur so content behind them softly bleeds through.
+     - Borders: near-invisible 1px strokes at ~15% opacity
+       that mimic the edge of physical glass.
+     - Shadows: soft, coloured (not black) for warmth.
+   
+   Lotus colour mapping:
+     lotusInk1  #1F1F28  → used only for text, never bg
+     lotusInk3  #545464  → muted-foreground
+     lotusWhite0 #d5cea3 → primary accent (warm gold-parchment)
+     lotusWhite2 #f2ecbc → highlight / selection
+     lotusBlue1  #c7d7e0 → soft blue surface accent
+     lotusGreen3 #b7d0ae → success / tag accent
+     lotusPink   #b35b79 → primary action (dusty rose-plum)
+     lotusTeal1  #4e8ca2 → link / interactive blue-teal
+     lotusViolet1 #a09cac → muted border / secondary surface
+   ============================================================ */
+
+:root {
+	/* ── Core Surfaces ──────────────────────────────────── */
+	/* Parchment-white canvas — lotusWhite4 lightened       */
+	--background: oklch(0.97 0.012 88);
+	--foreground: oklch(0.18 0.018 264);
+	/* near-black ink, lotusInk1-ish */
+
+	/* Cards sit on top of the canvas — slightly warmer     */
+	--card: oklch(0.96 0.010 88);
+	--card-foreground: oklch(0.18 0.018 264);
+
+	--popover: oklch(0.98 0.008 88);
+	--popover-foreground: oklch(0.18 0.018 264);
+
+	/* ── Brand Accent: Dusty Rose (lotusPink #b35b79) ─── */
+	--primary: oklch(0.52 0.110 4);
+	--primary-foreground: oklch(0.99 0.005 88);
+
+	/* ── Secondary: Warm Parchment Gold ─────────────────── */
+	--secondary: oklch(0.93 0.035 88);
+	--secondary-foreground: oklch(0.22 0.018 264);
+
+	/* ── Muted: Soft violet-grey (lotusViolet1) ─────────── */
+	--muted: oklch(0.93 0.012 276);
+	--muted-foreground: oklch(0.48 0.020 264);
+
+	/* ── Accent: Blue-teal (lotusTeal1 #4e8ca2) ─────────── */
+	--accent: oklch(0.91 0.028 216);
+	--accent-foreground: oklch(0.22 0.018 264);
+
+	/* ── Destructive: lotusRed #c84053 ───────────────────── */
+	--destructive: oklch(0.55 0.160 17);
+	--destructive-foreground: oklch(0.99 0.005 88);
+
+	/* ── Borders & Inputs ────────────────────────────────── */
+	--border: oklch(0.86 0.018 88);
+	--input: oklch(0.90 0.016 88);
+	--ring: oklch(0.52 0.110 4);
+
+	/* ── Charts (Lotus accent rainbow) ──────────────────── */
+	--chart-1: oklch(0.52 0.110 4);
+	/* dusty rose       */
+	--chart-2: oklch(0.57 0.088 216);
+	/* teal             */
+	--chart-3: oklch(0.62 0.095 145);
+	/* sage green       */
+	--chart-4: oklch(0.72 0.095 88);
+	/* warm gold        */
+	--chart-5: oklch(0.52 0.095 276);
+	/* soft violet      */
+
+	/* ── Sidebar ─────────────────────────────────────────── */
+	--sidebar: oklch(0.95 0.014 88);
+	--sidebar-foreground: oklch(0.18 0.018 264);
+	--sidebar-primary: oklch(0.52 0.110 4);
+	--sidebar-primary-foreground: oklch(0.99 0.005 88);
+	--sidebar-accent: oklch(0.91 0.028 216);
+	--sidebar-accent-foreground: oklch(0.22 0.018 264);
+	--sidebar-border: oklch(0.86 0.018 88);
+	--sidebar-ring: oklch(0.52 0.110 4);
+
+	/* ── Shape & Motion ──────────────────────────────────── */
+	--radius: 10px;
+	/* gentle rounding complements glass   */
+
+	/* ── Shadows (warm-tinted, not pure black) ───────────── */
+	--shadow-color: oklch(0.45 0.045 88);
+	--shadow-2xs: 0 1px 2px 0 oklch(0.45 0.045 88 / 0.08);
+	--shadow-xs: 0 1px 3px 0 oklch(0.45 0.045 88 / 0.10);
+	--shadow-sm: 0 2px 6px -1px oklch(0.45 0.045 88 / 0.14), 0 1px 3px -1px oklch(0.45 0.045 88 / 0.10);
+	--shadow: 0 4px 12px -2px oklch(0.45 0.045 88 / 0.16), 0 2px 6px -2px oklch(0.45 0.045 88 / 0.10);
+	--shadow-md: 0 6px 16px -3px oklch(0.45 0.045 88 / 0.18), 0 3px 8px -3px oklch(0.45 0.045 88 / 0.12);
+	--shadow-lg: 0 10px 24px -4px oklch(0.45 0.045 88 / 0.20), 0 4px 10px -4px oklch(0.45 0.045 88 / 0.12);
+	--shadow-xl: 0 16px 40px -6px oklch(0.45 0.045 88 / 0.22), 0 6px 14px -6px oklch(0.45 0.045 88 / 0.14);
+	--shadow-2xl: 0 24px 56px -8px oklch(0.45 0.045 88 / 0.28);
+
+	/* Legacy shadow variables (keep for compatibility)      */
+	--shadow-x: 0px;
+	--shadow-y: 4px;
+	--shadow-blur: 16px;
+	--shadow-spread: 0px;
+	--shadow-opacity: 0.16;
+
+	/* ── Glassmorphism Tokens ────────────────────────────── */
+	/* These drive the .glass and .glass-elevated utilities  */
+	--glass-blur: 12px;
+	--glass-bg: oklch(0.98 0.010 88 / 0.62);
+	--glass-border: oklch(0.75 0.018 88 / 0.35);
+	--glass-shadow: 0 4px 24px -4px oklch(0.45 0.045 88 / 0.14),
+		inset 0 1px 0 oklch(0.99 0.005 88 / 0.60);
+
+	--glass-blur-elevated: 20px;
+	--glass-bg-elevated: oklch(0.99 0.008 88 / 0.80);
+	--glass-border-elevated: oklch(0.80 0.018 88 / 0.45);
+	--glass-shadow-elevated: 0 8px 32px -6px oklch(0.45 0.045 88 / 0.18),
+		inset 0 1px 0 oklch(0.99 0.005 88 / 0.70);
+
+	/* ── Typography ─────────────────────────────────────── */
+	/* DM Serif Display — editorial warmth for headings      */
+	/* DM Sans — humanist, screen-optimised for body/UI      */
+	/* JetBrains Mono — crisp mono for program names, codes  */
+	--font-display: "DM Serif Display", ui-serif, Georgia, serif;
+	--font-body: "DM Sans", "VendSans-Regular", "Helvetica Neue", sans-serif;
+	--font-sans: "DM Sans", sans-serif;
+	--font-serif: "DM Serif Display", ui-serif, Georgia, serif;
+	--font-mono: "JetBrains Mono", "Source Code Pro", monospace;
+	--font-variant: normal;
+
+	/* ── Spacing & Tracking ─────────────────────────────── */
+	--tracking-normal: 0em;
+	--tracking-wide: 0.02em;
+	--spacing: 0.25rem;
+
+	/* ── Ambient Background Gradient Mesh ───────────────── */
+	/* Applied to <body> — provides the coloured depth that  */
+	/* makes glass cards actually read as frosted glass.     */
+	--bg-gradient:
+		radial-gradient(ellipse 80% 60% at 15% 10%, oklch(0.88 0.048 4 / 0.45) 0%, transparent 55%),
+		radial-gradient(ellipse 70% 50% at 85% 20%, oklch(0.85 0.038 216 / 0.40) 0%, transparent 55%),
+		radial-gradient(ellipse 60% 70% at 50% 90%, oklch(0.90 0.040 145 / 0.35) 0%, transparent 55%),
+		radial-gradient(ellipse 90% 80% at 70% 60%, oklch(0.92 0.030 88 / 0.30) 0%, transparent 60%),
+		oklch(0.97 0.012 88);
+}
+
+/* ── Dark Mode Override ──────────────────────────────────────
+   Toggles to Kanagawa Wave (dark) if you ever want to offer
+   a dark mode toggle. Mirrors the spirit of the original
+   Gruvebox palette but with Kanagawa's richer hues.
+   Uncomment the @media rule and wrap in a .dark class or
+   data-theme attribute as your framework requires.
+   ──────────────────────────────────────────────────────────── */
+/*
+.dark {
+	--background:         oklch(0.14 0.016 264);
+	--foreground:         oklch(0.92 0.014 88);
+	--card:               oklch(0.17 0.016 264);
+	--card-foreground:    oklch(0.92 0.014 88);
+	--popover:            oklch(0.17 0.016 264);
+	--popover-foreground: oklch(0.92 0.014 88);
+	--primary:            oklch(0.68 0.120 4);
+	--primary-foreground: oklch(0.14 0.016 264);
+	--secondary:          oklch(0.22 0.016 264);
+	--secondary-foreground: oklch(0.92 0.014 88);
+	--muted:              oklch(0.20 0.014 264);
+	--muted-foreground:   oklch(0.62 0.016 264);
+	--accent:             oklch(0.22 0.016 264);
+	--accent-foreground:  oklch(0.92 0.014 88);
+	--border:             oklch(0.26 0.016 264);
+	--input:              oklch(0.26 0.016 264);
+	--ring:               oklch(0.68 0.120 4);
+	--sidebar:            oklch(0.17 0.016 264);
+	--sidebar-foreground: oklch(0.92 0.014 88);
+	--sidebar-border:     oklch(0.26 0.016 264);
+	--glass-bg:           oklch(0.20 0.016 264 / 0.65);
+	--glass-border:       oklch(0.40 0.016 264 / 0.30);
+	--glass-bg-elevated:  oklch(0.24 0.016 264 / 0.80);
+	--bg-gradient:
+		radial-gradient(ellipse 80% 60% at 15% 10%,  oklch(0.32 0.085 4   / 0.30) 0%, transparent 55%),
+		radial-gradient(ellipse 70% 50% at 85% 20%,  oklch(0.28 0.065 216 / 0.28) 0%, transparent 55%),
+		radial-gradient(ellipse 60% 70% at 50% 90%,  oklch(0.30 0.060 145 / 0.22) 0%, transparent 55%),
+		oklch(0.14 0.016 264);
+}
+*/
+
+
+/* ============================================================
+   THEME MAPPING  →  Tailwind CSS variables
+   ============================================================ */
+
+@theme inline {
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--color-card: var(--card);
+	--color-card-foreground: var(--card-foreground);
+	--color-popover: var(--popover);
+	--color-popover-foreground: var(--popover-foreground);
+	--color-primary: var(--primary);
+	--color-primary-foreground: var(--primary-foreground);
+	--color-secondary: var(--secondary);
+	--color-secondary-foreground: var(--secondary-foreground);
+	--color-muted: var(--muted);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-accent: var(--accent);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-destructive: var(--destructive);
+	--color-destructive-foreground: var(--destructive-foreground);
+	--color-border: var(--border);
+	--color-input: var(--input);
+	--color-ring: var(--ring);
+	--color-chart-1: var(--chart-1);
+	--color-chart-2: var(--chart-2);
+	--color-chart-3: var(--chart-3);
+	--color-chart-4: var(--chart-4);
+	--color-chart-5: var(--chart-5);
+	--color-sidebar: var(--sidebar);
+	--color-sidebar-foreground: var(--sidebar-foreground);
+	--color-sidebar-primary: var(--sidebar-primary);
+	--color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+	--color-sidebar-accent: var(--sidebar-accent);
+	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+	--color-sidebar-border: var(--sidebar-border);
+	--color-sidebar-ring: var(--sidebar-ring);
+	--font-sans: var(--font-sans);
+	--font-mono: var(--font-mono);
+	--font-serif: var(--font-serif);
+	--radius-sm: calc(var(--radius) - 4px);
+	--radius-md: calc(var(--radius) - 2px);
+	--radius-lg: var(--radius);
+	--radius-xl: calc(var(--radius) + 6px);
+	--radius-2xl: calc(var(--radius) + 14px);
+	--shadow-2xs: var(--shadow-2xs);
+	--shadow-xs: var(--shadow-xs);
+	--shadow-sm: var(--shadow-sm);
+	--shadow: var(--shadow);
+	--shadow-md: var(--shadow-md);
+	--shadow-lg: var(--shadow-lg);
+	--shadow-xl: var(--shadow-xl);
+	--shadow-2xl: var(--shadow-2xl);
+}
+
+
+/* ============================================================
+   BASE LAYER
+   ============================================================ */
+
+@layer base {
+	* {
+		@apply border-border outline-ring/50;
+	}
+
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		@apply m-0 bg-background text-foreground;
+		font-family: var(--font-body);
+		font-variant: var(--font-variant);
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		/* Ambient gradient mesh: gives glassmorphic cards a
+		   coloured backdrop to blur against. */
+		background-image: var(--bg-gradient);
+		background-attachment: fixed;
+		min-height: 100dvh;
+	}
+
+	/* Headings use the display serif for editorial warmth */
+	h1,
+	h2,
+	h3,
+	h4 {
+		font-family: var(--font-display);
+		font-weight: 400;
+		/* DM Serif Display is inherently bold */
+		letter-spacing: -0.01em;
+	}
+
+	h5,
+	h6 {
+		font-family: var(--font-sans);
+		font-weight: 600;
+	}
+
+	code,
+	kbd,
+	samp,
+	pre {
+		font-family: var(--font-mono);
+		font-size: 0.875em;
+	}
+
+	/* Colour selection — warm dusty-rose highlight */
+	::selection {
+		background-color: oklch(0.52 0.110 4 / 0.22);
+		color: var(--foreground);
+	}
+
+	::-moz-selection {
+		background-color: oklch(0.52 0.110 4 / 0.22);
+		color: var(--foreground);
+	}
+
+	/* Smooth focus ring using the accent teal */
+	:focus-visible {
+		outline: 2px solid var(--ring);
+		outline-offset: 2px;
+		border-radius: var(--radius);
+	}
+}
