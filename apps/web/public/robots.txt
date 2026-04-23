@@ -1,0 +1,49 @@
+# Docs: https://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+Disallow: /
+
+User-agent: Googlebot
+Allow: /
+
+Sitemap: https://contexture.app/sitemap.xml
+
+User-agent: Bingbot
+Disallow: /
+
+User-agent: Slurp
+Disallow: /
+
+User-agent: DuckDuckBot
+Disallow: /
+
+User-agent: Baiduspider
+Disallow: /
+
+User-agent: YandexBot
+Disallow: /
+
+User-agent: Facebookbot
+Disallow: /
+
+User-agent: Twitterbot
+Disallow: /
+
+User-agent: LinkedInBot
+Disallow: /
+
+# Block Zone
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: Python-urllib
+Disallow: /
+
+User-agent: *
+Crawl-delay: 1

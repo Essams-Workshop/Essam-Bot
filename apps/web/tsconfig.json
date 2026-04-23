@@ -1,8 +1,42 @@
 {
-  "extends": "@repo/typescript-config/vite.json",
-  "include": ["src"],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "vite.config.ts"
+  ],
   "compilerOptions": {
+    "target": "ES2022",
     "jsx": "react-jsx",
-    "strictNullChecks": true
+    "module": "ESNext",
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "types": [
+      "vite/client"
+    ],
+    /* Bundler */
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": false,
+    "noEmit": true,
+    /* Linting */
+    "skipLibCheck": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+    /* Path Resolution */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
+    /* Pnpm Compatibility */
+    "moduleResolution": "bundler",
+    "resolvePackageJsonExports": true,
+    "resolvePackageJsonImports": true
   }
 }

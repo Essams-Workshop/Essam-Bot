@@ -1,0 +1,20 @@
+"$schema" = "node_modules/wrangler/config-schema.json"
+
+name = "essam-bot/site"
+main = "@tanstack/react-start/server-entry"
+compatibility_flags = ["nodejs_compat"]
+compatibility_date = "2025-09-24"
+workers_dev = false
+
+[build]
+command = "pnpm run build"
+
+# Observability Config, See: https://developers.cloudflare.com/workers/wrangler/configuration/
+[observability]
+enabled = true
+
+[observability.logs]
+enabled = true
+
+[observability.traces]
+enabled = false
