@@ -12,9 +12,9 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: postgres
-      ESSAM_BOT_USER: ${ESSAM_BOT_USER:-essam-bot}
-      ESSAM_BOT_PASS: ${ESSAM_BOT_PASS:-essam-bot}
-      ESSAM_BOT_DB: ${ESSAM_BOT_DB:-essam-bot}
+      ESSAM_BOT_USER: ${ESSAM_BOT_USER:-essambot}
+      ESSAM_BOT_PASS: ${ESSAM_BOT_PASS:-essambot}
+      ESSAM_BOT_DB: ${ESSAM_BOT_DB:-essambot}
       TZ: UTC
       PGTZ: UTC
       PGDATA: /var/lib/postgresql/data/pgdata
@@ -22,7 +22,7 @@ services:
       - "5432:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
-      - ./scripts/setup-dcrdb.sh:/docker-entrypoint-initdb.d/setup-dcrdb.sh:ro
+      - ./scripts/setup-dcrdb.sh:/docker-entrypoint-initdb.d/setup-dcrdb.sh
 
 volumes:
   postgres-data:
