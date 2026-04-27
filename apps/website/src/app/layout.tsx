@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
-import { Grain } from "@/components/fx/Grain";
-import { GridBackdrop } from "@/components/fx/GridBackdrop";
-import { Scanlines } from "@/components/fx/Scanlines";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -16,8 +13,8 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Builder Cohort #1",
-  description: "Retro-futuristic command deck for Builder Cohort #1."
+  title: "Essam Bot",
+  description: "Your personal automation bot. Always on."
 };
 
 export default function RootLayout({
@@ -27,12 +24,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${jetbrainsMono.variable} ${spaceGrotesk.variable}`}>
-        <div className="fixed inset-0 -z-10">
-          <GridBackdrop />
-          <Scanlines />
-          <Grain />
-        </div>
+      <body className={`${jetbrainsMono.variable} ${spaceGrotesk.variable} antialiased`}>
+        <div className="grid-bg" aria-hidden="true" />
+        <div className="glow-spot" aria-hidden="true" />
+        <div className="scanlines" aria-hidden="true" />
         {children}
       </body>
     </html>

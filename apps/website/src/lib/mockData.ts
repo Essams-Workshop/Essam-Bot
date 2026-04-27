@@ -2,7 +2,7 @@ import type { MockData } from "@/lib/types";
 
 export const mock: MockData = {
   cohort: {
-    status: "RECRUITING_PHASE_01",
+    status: "LIVE_DEMO_ONLINE",
     seats: 128,
     claimed: 87,
     uptime: 99.9
@@ -34,16 +34,16 @@ export const mock: MockData = {
   ],
   features: [
     {
-      title: "CODING_ACTIVITY",
-      description: "Granular tracking of VS Code activity and git contributions. Your terminal is your heartbeat."
+      title: "BOT_ACTIVITY",
+      description: "Review recent bot events and command output in one focused feed."
     },
     {
-      title: "RANKING_SYSTEM",
-      description: "Dynamic, zero-latency leaderboard. Climb the stack or get archived in the legacy bin."
+      title: "SYSTEM_HEALTH",
+      description: "Track runtime signals and key health metrics to keep Essam Bot stable."
     },
     {
-      title: "DISCORD_BOT",
-      description: "Integrated command center. Receive alerts, push updates, and challenge peers directly via Discord."
+      title: "QUICK_COMMANDS",
+      description: "Run common bot actions instantly from the dashboard without context switching."
     }
   ]
 };

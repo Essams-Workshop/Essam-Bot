@@ -3,27 +3,40 @@ import { cn } from "@/lib/cn";
 
 type ButtonProps = {
   href?: string;
-  variant?: "solid" | "ghost";
+  variant?: "primary" | "secondary" | "ghost";
+  size?: "md" | "lg";
   className?: string;
   children: React.ReactNode;
 };
 
-const base =
-  "mono inline-flex items-center justify-center rounded-sm border px-4 py-2 text-xs tracking-[0.16em] transition-all duration-200";
+const baseStyles =
+  "inline-flex items-center justify-center gap-2 rounded-none font-medium tracking-tight transition-all duration-150 focus:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
 
-export function Button({ href, variant = "ghost", className, children }: ButtonProps) {
-  const styles =
-    variant === "solid"
-      ? "border-accent bg-accent text-bg hover:shadow-cyan"
-      : "border-accent/50 bg-transparent text-accent hover:border-accent hover:bg-accent/10";
+const sizeStyles: Record<NonNullable<ButtonProps["size"]>, string> = {
+  md: "px-4 py-2 text-sm",
+  lg: "px-5 py-3 text-sm"
+};
+
+const variantStyles: Record<NonNullable<ButtonProps["variant"]>, string> = {
+  primary: "bg-accent text-bg border border-accent hover:bg-accentSoft hover:shadow-cyan",
+  secondary: "border border-borderStrong bg-transparent text-text hover:border-accent hover:text-accent",
+  ghost: "text-muted hover:text-accent"
+};
+
+export function Button({ href, variant = "primary", size = "md", className, children }: ButtonProps) {
+  const classes = cn(baseStyles, sizeStyles[size], variantStyles[variant], className);
 
   if (href) {
     return (
-      <Link href={href} className={cn(base, styles, className)}>
+      <Link href={href} className={classes}>
         {children}
       </Link>
     );
   }
 
-  return <button className={cn(base, styles, className)}>{children}</button>;
+  return (
+    <button type="button" className={classes}>
+      {children}
+    </button>
+  );
 }
